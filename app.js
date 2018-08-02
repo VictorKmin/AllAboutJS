@@ -67,9 +67,25 @@
 //
 //     return a.concat(b);
 //    });
-//
-//
 // console.log(normal);
+//
+//
+// function f2(array) {
+//     array.reduce((prev,curr)=> {
+//         return prev.concat(curr);
+//     });
+// }
+//
+// let array = [[1,2,3],[4,5]];
+// //     .reduce((a, b) => {
+// //     return a.concat(b);
+// // });
+// let flatt = [[0, 1], [2]]
+//     .reduce((a, b) => {
+//     return a.concat(b);
+// });
+// console.log(flatt);
+// console.log(array);
 
 // MAP
 // let a = [1, 2, 3, 4, 5, 6, 7];
@@ -188,21 +204,6 @@
 //     .then(buyTickets)
 //     .catch(reject => console.log(reject));
 
-
-
-// Определим функцию от трех переменных
-function greet(gender, age, name) {
-    // if a male, use Mr., else use Ms.
-    var salutation = gender === "male" ? "Mr. " : "Ms. ";
-
-    if (age > 25) {
-        return "Hello, " + salutation + name + ".";
-    }
-    else {
-        return "Hey, " + name + ".";
-    }
-}
-
 // CALL
 // let worker1 = {
 //     name: 'Anna',
@@ -225,9 +226,9 @@ function greet(gender, age, name) {
 // console.log(worker1);
 // console.log(worker2);
 
-//TODO
+//SPREAD
 // let a = [1,2,3];
-// ..a
+// ...a
 //
 // let b = {
 //     a: 12
@@ -287,34 +288,91 @@ function greet(gender, age, name) {
 // chat();
 // console.log('Конец');
 
+//Наслідування
+// let Person = function (name, age) {
+//     this.name = name;
+//     this.age = age;
+// };
+//
+// // пртотип додає якісь параметри до обєкта, які не добре
+// // вказувати у конструкторі. Наприклад функції.
+// // прототип не наслудується !!!
+// Person.prototype.greet = function (massage) {
+//     console.log(this.name + ' say ' + massage);
+// };
+// let Developer = function (name, age, language) {
+//     Person.apply(this,arguments);
+//     this.language = language;
+// };
+// // Так відбувається наслідування прототипів
+// Developer.prototype.__proto__ = Person.prototype;
+//
+// let homer = new Person('homie', 40);
+// let phpist = new Developer('bart', 90, 'PeHaPe')
+//
+// homer.greet('Hello there');
+// phpist.greet('I like boys');
+// console.log(phpist);
+// console.log(homer);
 
-function f1(...args) {
-    console.log( args.length );
-    console.log(args.values().next());
-    console.log(args.values().next());
-}
+//DESTRUCTURISATION
+// function f1(...args) {
+//     console.log( args.length );
+//     console.log(args.values().next());
+// }
+//
+// let testArr = [8,4,'hello', {name : 'userName', age:15}, [1,3,5]];
+// f1(testArr);
+//
+// console.log('_____');
+//
+// f1(8,4,'hello', {name : 'userName', age:15}, [1,3,5]);
 
-let testArr = [8,4,'hello', {name : 'userName', age:15}, [1,3,5]]
-f1(testArr);
-console.log('_____');
-f1(8,4,'hello', {name : 'userName', age:15}, [1,3,5]);
+// КУСОЧОК ООП.
+// // запсукати через консольку ноди
+// let Person = require('./class');
+//
+// let pers = new Person('Igor', 24, 'male');
+//
+// pers.greet()
 
-function f2(array) {
-    array.reduce((prev,curr)=> {
-        return prev.concat(curr);
-    });
-}
+//OBJECT ASSIGN
+// let persona = {
+//     name :'Igor',
+//     age: 24,
+//     gender: 'male'
+// };
+//
+// let car = {
+//     color: 'red',
+//     wheels: 4,
+//     power: 200
+// };
+//
+// // Персону поміняли, додавши до неї кару.
+// Object.assign(persona, car);
+// // Що б такого не було, першйи параметром передаємо пустий обєкт
+// let persWithCar = Object.assign({}, persona, car);
+// console.log(persWithCar);
+// console.log(persona);
+// console.log(car);
+//
+//
+// let objInObj = {
+//     friend :{
+//         val: 10
+//     },
+//     bool: true
+// };
+// // обєкти не розкриваються (((
+// let assignedObj = Object.assign({}, car, objInObj);
+// console.log(assignedObj);
+//
 
-let array = [[1,2,3],[4,5]];
-//     .reduce((a, b) => {
-//     return a.concat(b);
-// });
-let flatt = [[0, 1], [2]]
-    .reduce((a, b) => {
-    return a.concat(b);
-});
-
-// console.log(flatt);
-// console.log(array);
-
-f2(array);
+// ЧОМУ !!!
+// let string = 'string';
+// let integer = '10';
+// let bool = false;
+//
+// let allInOne = Object.assign({}, string, integer, bool);
+// console.log(allInOne);
