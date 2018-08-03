@@ -5,7 +5,12 @@ class Person {
         this.age = age;
         this.gender = gender;
     }
-    greet() {
+    a(){
+        Person.greet()
+    }
+
+    // статичний метода.
+    static greet() {
         console.log(this.name + ' hello')
     };
 }

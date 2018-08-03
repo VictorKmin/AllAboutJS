@@ -344,7 +344,7 @@
 // };
 //
 // let car = {
-//     color: 'red',
+//     name: 'red',
 //     wheels: 4,
 //     power: 200
 // };
@@ -357,6 +357,8 @@
 // console.log(persona);
 // console.log(car);
 //
+// let b = car;
+// let b = JSON.parse(JSON.stringify(car));
 //
 // let objInObj = {
 //     friend :{
@@ -374,5 +376,53 @@
 // let integer = '10';
 // let bool = false;
 //
+// // Тому що стрінга це масив чарів, а відповідно і обєкт.
+// // {0:s, 1:t, 2:r, 3:i, ...}
+// // воно пише це в новий обєкт через assign. Далі додає обєкт 10,
+// // який теж є масивом стрнгів {0:1, 1:0}
+// // через це воно перезатирає значення першого записаногообєкту
 // let allInOne = Object.assign({}, string, integer, bool);
 // console.log(allInOne);
+//
+//
+//
+
+//FOR..IN FOR..OF
+//
+// //FOR..IN
+// // обходить тільки ключі в обєкті. На значення не дивиться
+// let a = {
+//     name: 'Dima',
+//     surname: 'Petrov',
+//     age: 10
+// };
+// for (let prop in a) {
+//     if (prop.length < 5) {
+//         console.log(prop)
+//     }
+// }
+// console.log('_____');
+//
+// //FOR OF обходить вже значення масиву. Але не обєкту.
+// let b = [
+//     'Dima',
+//     'Petrov',
+//     10
+// ];
+// for (let prop of b) {
+//     if (prop.length < 5) {
+//         console.log(prop)
+//     }
+// }
+
+let obj = {
+    value: 10
+};
+
+let prot = Object.create(obj);
+console.log(obj.value);
+console.log(prot.value);
+console.log('___');
+prot.value = 1;
+console.log(obj.value);
+console.log(prot.value);
