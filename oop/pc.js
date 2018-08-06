@@ -1,5 +1,5 @@
-let comps = require("./computer");
-let comp = comps;
+const comp = require("./computer");
+const err = require("./validatinError");
 
 class pc extends comp{
     constructor(producer,processor, ram, isDoubleMonitor, yearOfProduced){
@@ -9,7 +9,11 @@ class pc extends comp{
     }
 
     get isDoubleMonitor() {
-        return this._isDoubleMonitor;
+        if (typeof this._isDoubleMonitor ==='boolean') {
+            return this._isDoubleMonitor;
+        } else {
+            throw new err('Field must be boolean');
+        }
     }
 
     set isDoubleMonitor(value) {
@@ -17,7 +21,11 @@ class pc extends comp{
     }
 
     get yearOfProduced() {
-        return this._yearOfProduced;
+       if (this._yearOfProduced.length === 4 && typeof this._yearOfProduced === "number"){
+           return this._yearOfProduced
+       } else {
+           throw new err(this._yearOfProduced + ' must have 4 symbols and be a number')
+       }
     }
 
     set yearOfProduced(value) {

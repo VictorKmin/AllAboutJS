@@ -288,7 +288,7 @@
 // chat();
 // console.log('Конец');
 
-//Наслідування
+// Наслідування
 // let Person = function (name, age) {
 //     this.name = name;
 //     this.age = age;
@@ -314,8 +314,8 @@
 // phpist.greet('I like boys');
 // console.log(phpist);
 // console.log(homer);
-
-//DESTRUCTURISATION
+//
+// DESTRUCTURISATION
 // function f1(...args) {
 //     console.log( args.length );
 //     console.log(args.values().next());
@@ -415,14 +415,90 @@
 //     }
 // }
 
-let obj = {
-    value: 10
-};
+//
+// let obj = {
+//     value: 10
+// };
+//
+// let prot = Object.create(obj);
+// console.log(obj.value);
+// console.log(prot.value);
+// console.log('___');
+// prot.value = 1;
+// console.log(obj.value);
+// console.log(prot.value);
 
-let prot = Object.create(obj);
-console.log(obj.value);
-console.log(prot.value);
-console.log('___');
-prot.value = 1;
-console.log(obj.value);
-console.log(prot.value);
+
+// console.log('___');console.log('___');
+
+
+
+let currentCount = 1;
+function makeCounter() {
+    return function() {
+        return currentCount++;
+    };
+}
+let counter = makeCounter();
+console.log(counter());
+console.log(counter());
+let counter2 = makeCounter();
+console.log(counter2());
+console.log(counter2());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function resolveAfter2Seconds(x) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(x);
+        }, 2000);
+    });
+}
+
+async function add1(x) {
+    const a = await resolveAfter2Seconds(20);
+    const b = await resolveAfter2Seconds(30);
+    return x + a + b;
+}
+
+add1(10).then(v => {
+    console.log(v);  // prints 60 after 4 seconds.
+});
+
+async function add2(x) {
+    const a = resolveAfter2Seconds(20);
+    const b = resolveAfter2Seconds(a);
+    return x + await a + await b;
+}
+
+add2(10).then(v => {
+    console.log(v);  // prints 60 after 2 seconds.
+});
