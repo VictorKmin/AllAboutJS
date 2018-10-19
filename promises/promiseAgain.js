@@ -18,6 +18,13 @@ function b(val) {
 
 a()
     .then(resolve => a())
-    .then(ЗначеняЯкеВіддавThenВище => b(ЗначеняЯкеВіддавThenВище))
+    .then(() => getUsers())
+    .then(ЗначеняЯкеВіддавThenВище => {
+        if(!ЗначеняЯкеВіддавThenВище) return reject(new Error('users was not found'))
+        b(ЗначеняЯкеВіддавThenВище)
+    })
     .then(КінцевийРезультут => console.log(КінцевийРезультут))
-    // .catch(console.log('Коли щось пішло не так'));
+    .catch(function (e) {
+        console.log(e);
+    });
+

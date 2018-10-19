@@ -1,7 +1,7 @@
 async function a() {
     return new Promise((resolve, reject) => {
         let res = 10 * 10;
-       resolve(res)
+        resolve(res)
     })
 }
 
@@ -21,27 +21,34 @@ async function calcRes() {
 
 calcRes().then(
     result => {
-    console.log(result)
-}, err=> {
-    console.log(err)
-});
+        console.log(result)
+    }, err => {
+        console.log(err)
+    });
 
 
 // _______________________________________
 //
+getUsers = async () => {
+    const users = await user.findAll();
+    if (!users) throw new Error('qqqq');
+    return users
+}
 
 // try catch бажано юзати і в асинхронних функціях.
 async function firstFunc() {
-   try {
-       let a = 20*10;
-       return a;
-   } catch (e) {
-       console.log(e);
-   }
+    try {
+        let a = 20 * 10;
+        const users = await getUsers();
+        if (!a) throw  new Error('efwefw');
+        return a;
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 async function secondFunc(value) {
-    let b = value/2;
+    let b = value / 2;
     return b;
 }
 

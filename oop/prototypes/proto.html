@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PROT0</title>
+</head>
+<body>
+<script>
+
+    // Прототипне наслідування
+    //
+    function Animal(name) {
+        this.name = name;
+        this.speed = 0;
+    }
+
+    Animal.prototype.getSpeed = function () {
+// Animal.prototype.getSpeed = () => {   // UNDEFINED !! Тому що стрілочна не має this
+        console.log(this.speed)
+    };
+
+    Animal.prototype.setSpeed = function (speed) {
+        this.speed = speed;
+    };
+
+    function Rabbit(name) {
+        this.name = name;
+        // Якщо в батька вже є таке поле, то не потрібно його вказувати
+        // this.speed = 0;
+    }
+
+    Rabbit.prototype.run = function () {
+        console.log(`${this.name} run with speed ${this.speed}`)
+    };
+
+
+    let tortoise = new Animal('Tortilla');
+    tortoise.setSpeed(2);
+    tortoise.getSpeed();
+
+    let rabbit = new Rabbit('Bonny');
+    rabbit.run(10);
+
+    // Кажемо, що прототипом кроля буде Animal прототип
+    // аналог extend
+    Rabbit.prototype.__proto__ = Animal.prototype;
+    //Тепер в прототипі зявився Animal
+    console.log('Rabbit.prototype');
+    console.log(Rabbit.prototype);
+    console.log('__________________');
+    console.log('Animal.prototype');
+    console.log(Animal.prototype);
+
+
+    let r2 = new Rabbit('r2d2');
+    r2.__proto__.setSpeed(20);
+    r2.__proto__.getSpeed();
+
+    r2.run()
+
+</script>
+
+</body>
+</html>

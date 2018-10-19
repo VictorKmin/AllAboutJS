@@ -3,11 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="app.js"></script>
+    <!--<script src="app.js"></script>-->
 </head>
 <body>
-<!--<form action="">-->
-    <!--<input type="button" value="Проверить" onclick="isClick(document)">-->
-<!--</form>-->
+
+
+<script>
+    // // 1) CLOSURES
+    //
+    //     function outer() {
+    //         let x = 0;
+    //         function increment() {
+    //             return x++;
+    //         }
+    //         return increment
+    //     }
+    //
+    // let ret = outer();
+    // console.log(ret);
+    // console.log(ret());
+    // console.log(ret());
+    //
+    // // ПРИКЛАД 2. ОБОВЯЗКОВО ПОКАЗАТИ
+    //
+    //     function privateVar() {
+    //         let user = {name: 'Igor', age: 22};
+    //
+    //         return {
+    //             getName:  () => {
+    //                 return user.name
+    //             },
+    //             setName: newName => {
+    //                 user.name = newName
+    //             }
+    //         }
+    //     }
+    //
+    //     // Обовязково викликати функцію в віддільну змінну. Нове викликання функції буде робити новий дублікат
+    //     let obj = privateVar();
+    //     console.log(obj.getName());
+    // // Створили новий обєкт
+    //     let obj2 = privateVar()
+    //     // Дали нове імя першому
+    //     obj.setName('Kolka');
+    // // Друге лишилось з звичайним імям
+    //     console.log(obj2.getName());
+    //
+    //     console.log(obj.getName());
+    //
+    //
+    // function connectToDataBase() {
+    //     let instance;
+    //
+    //     function initConnection() {
+    //         console.log('Конекшн відувається');
+    //     }
+    //
+    //     return {
+    //         getInstance: () => {
+    //             if (!instance) {
+    //                 instance = initConnection;
+    //             }
+    //             return instance();
+    //         }
+    //     }
+    // }
+    //
+    // let connect = connectToDataBase().getInstance;
+    // connect();
+    // connect();
+    //
+
+    // let outer = () => {
+    //     let a = 0;
+    //     let counter = () => {
+    //         a = Math.random() * 1000
+    //         return a;
+    //     };
+    //     return counter
+    // };
+    //
+    // let l = outer()
+    // console.log(l());
+    // console.log(l());
+    // console.log(l());
+    // console.log(l());
+    // console.log(l());
+    // console.log(l());
+    // console.log(l());
+    // console.log(l());
+
+
+    // // 2) CallBack
+    // //
+    // // Оприділяємо змінну з аргументои CallBack
+    // function functionName(arg1, arg2, callback) {
+    //     // змінна, яка генерує випадкове число в рамках вказаних в вкиклику
+    //     let returnedNumber = Math.random() * (arg1 - arg2) + arg2;
+    //     // викликаємо колбек з параметром числа
+    //     callback(returnedNumber);
+    // }
+    //
+    // // викликаємо функцію з третім параметров функції та текстом всередині
+    // functionName(5, 15, function (num) {
+    //     // текстом вскерединеі є наш результат. Можемо робитиз ним що завгодно
+    //     console.log("callback called! " + num);
+    // });
+    // //ВАЖЛИВИЙ ПРИКЛАД
+    // let buildHouser = function (money, time, callback) {
+    //     let isBuild = '';
+    //     if (money < 100 && time < 20) {
+    //         isBuild = 'Its imposible';
+    //         callback(isBuild)
+    //
+    //     } else {
+    //         function cacl() {
+    //             let workersCount = money/time;
+    //             isBuild = `You need ${workersCount} workers`;
+    //             callback(isBuild)
+    //         }
+    //
+    //
+    //         setTimeout(cacl, 1000);
+    //     }
+    // };
+    //
+    // buildHouser(500, 25, function (text) {
+    //     console.log(text);
+    // })
+
+    // // 3) ООП
+    // //
+    // //
+    // class Transport {
+    //     constructor(wheel, producer) {
+    //         this.wheel = wheel;
+    //         this.producer = producer;
+    //     }
+    //     changeWheel() {
+    //         console.log(`I change once of ${this.wheel} wheels`)
+    //     }
+    // }
+    //
+    //
+    //
+    // class Formula1 extends Transport{
+    //     constructor(wheel, produces, power, team, rider) {
+    //         super(wheel, produces, power);
+    //         this.team = team;
+    //         this.rider = rider
+    //     }
+    //
+    //     race() {
+    //         if (this.producer.toLowerCase() === 'germany') {
+    //             console.log(`with rider ${this.rider} win cup for ${this.team} team`)
+    //         } else {
+    //             console.log(`You are loose. Try to upgrade your car. ${this.power} is not enough`)
+    //         }
+    //     }
+    // }
+    //
+    // let reno = new Formula1(8, 'GermanY', 200, 'some', 'Fidel Castro');
+    // reno.race();
+    // reno.changeWheel();
+
+    // робота методу call()
+    //
+    //  function Animal(name) {
+    //      this.name = name;
+    //      this.speed = 0;
+    //  }
+    //
+    //  getSpeed = function () {
+    //      console.log(this.speed);
+    //  };
+    //
+    //  Animal.prototype.getSpeed = function () {
+    //      console.log(this.speed)
+    //  };
+    //
+    //  Animal.prototype.setSpeed = function (speed) {
+    //      this.speed = speed;
+    //  };
+    //
+    // setSpeedWithoutProto = function (speed) {
+    //      this.speed = speed;
+    //  };
+    //
+    //  let tortoise = new Animal('Tortilla');
+    //  tortoise.setSpeed(2);
+    //  tortoise.getSpeed();
+    //
+    //  // Не треба її викнонувати, а тоді робити call.
+    //  // Треба шо б call її виконував в контексті нового обєкта
+    //  // console.log(getSpeed);
+    //  // getSpeed().call(tortoise) // --> Не спрацює
+    //  getSpeed.call(tortoise);
+    //
+    //  // Другим та настпуними параметрами вказуємо значення, які приймає значення.
+    //  // В даному випадку наша функція має прийняти speed
+    //  setSpeedWithoutProto.call(tortoise,20);
+    //  tortoise.getSpeed()
+
+    // let a = {key: "value", key2: 'value2'};
+    //
+    // let t = Object.entries(a);
+    // console.log(t);
+    //
+    //
+    // let b = a;
+    // b.key = 'another';
+    //
+    //
+    // console.log(a);
+    // console.log(b);
+    //
+    // console.log(Object.is(a, b));
+    //
+    //
+
+    // //Arguments деструктуризація, клонування
+    // //
+    // function f(val1, val2) {
+    //     console.log(arguments);
+    //     console.log(typeof arguments);
+    // }
+    //
+    // let a = {a: 1, b: 2};
+    // let b = {c: 3, d: 4};
+    // let c = [11, 22, 33, [111, 222, 333]];
+    //
+    // let r = Object.assign({}, a, c);
+    // console.log(r);
+    //
+    // console.log(Object.is(a, r));
+    //
+    // f([1, 2, 3], 3);
+    //
+    //
+    // let [text, , , ...rest] = ['Hello', 'world', 'I', 'learn', `JavaScript`];
+    // console.log(rest);
+    //
+    // let {key1, key2, key3, ...keys} = {
+    //     key1: 'Hello', key2: 'world', key3: 'I', key4: 'learn', key:'JS'
+    // };
+    //
+    // console.log(keys);
+    //
+    //
+    // let obj = {
+    //     key1: 'Hello', key2: 'world', key3: 'I', key4: 'learn', key:'JS'
+    // };
+    //
+    // function iterCopy(obj) {
+    //     let copiedObj = {};
+    //     for (const key2Element in obj) {
+    //         if (obj.hasOwnProperty(key2Element)) {
+    //             copiedObj[key2Element] = obj[key2Element]
+    //         }
+    //     }
+    //     return copiedObj
+    // }
+    //
+    // let iterableCopy  = iterCopy(obj);
+    // console.log(iterableCopy);
+    //
+    //
+    // function iterationCopy(src) {
+    //     let target = {};
+    //     for (let prop in src) {
+    //         if (src.hasOwnProperty(prop)) {
+    //             target[prop] = src[prop];
+    //         }
+    //     }
+    //     return target;
+    // }
+    // const source = {a:1, b:2, c:3};
+    // const target = iterationCopy(source);
+    // console.log(target); // {a:1, b:2, c:3}
+
+
+    //тернарний оператор
+    //
+
+
+
+</script>
+
 </body>
 </html>

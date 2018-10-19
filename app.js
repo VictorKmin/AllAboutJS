@@ -369,7 +369,7 @@
 // // обєкти не розкриваються (((
 // let assignedObj = Object.assign({}, car, objInObj);
 // console.log(assignedObj);
-//
+
 
 // ЧОМУ !!!
 // let string = 'string';
@@ -427,9 +427,6 @@
 // prot.value = 1;
 // console.log(obj.value);
 // console.log(prot.value);
-
-
-// console.log('___');console.log('___');
 
 
 

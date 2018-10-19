@@ -1,9 +1,9 @@
 // import comp from "./computer";
 const comp = require("./computer");
 
-class laptop extends comp{
-    constructor(producer,processor, ram, weight, isDiskSSD){
-        super(producer,processor, ram);
+class laptop extends comp {
+    constructor(producer, processor, ram, weight, isDiskSSD) {
+        super(producer, processor, ram);
         this._weight = weight;
         this._isDiskSSD = isDiskSSD;
     }
