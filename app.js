@@ -205,26 +205,44 @@
 //     .catch(reject => console.log(reject));
 
 // CALL
-// let worker1 = {
-//     name: 'Anna',
-//     position: 'PM',
-//     money: 100
-// };
-// let worker2 = {
-//     name: 'Dima',
-//     position: 'Junik',
-//     money: 0
-// };
-//
-// function levelUP(newPosition, newMoney) {
-//     this.position = newPosition;
-//     this.money += newMoney
-// }
-// levelUP.call(worker1, 'CEO', 100);
-// levelUP.call(worker2, 'Middle', -100);
+let worker1 = {
+    name: 'Anna',
+    position: 'PM',
+    money: 1000
+};
+let worker2 = {
+    name: 'Dima',
+    position: 'Student',
+    money: 0
+};
+
+function levelUP(newPosition, newMoney) {
+    this.position = newPosition;
+    this.money += newMoney
+}
+// levelUP.call(worker1, 'Senior', -200);
+// levelUP.call(worker2, 'Trainee', 300);
 //
 // console.log(worker1);
 // console.log(worker2);
+
+//APPLY
+// Приймає в себе масив значень. Потім їх розкриває
+// levelUP.apply(worker1, ['CEO' , 500])
+// levelUP.apply(worker2, ['Jun' , 100])
+//
+// console.log(worker1);
+// console.log(worker2);
+//
+// BIND
+let newWorker1 = levelUP.bind(worker1, 'CEO', 2000);
+let newWorker2 = levelUP.bind(worker2, 'MID', 1000);
+
+console.log(worker1);
+console.log(worker2);
+
+console.log(newWorker1());
+console.log(newWorker2());
 
 //SPREAD
 // let a = [1,2,3];
@@ -389,8 +407,8 @@
 
 //FOR..IN FOR..OF
 //
-// //FOR..IN
-// // обходить тільки ключі в обєкті. На значення не дивиться
+//FOR..IN
+// обходить тільки ключі в обєкті. На значення не дивиться
 // let a = {
 //     name: 'Dima',
 //     surname: 'Petrov',
@@ -414,7 +432,7 @@
 //         console.log(prop)
 //     }
 // }
-
+//
 //
 // let obj = {
 //     value: 10
@@ -427,75 +445,89 @@
 // prot.value = 1;
 // console.log(obj.value);
 // console.log(prot.value);
-
-
-
-let currentCount = 1;
-function makeCounter() {
-    return function() {
-        return currentCount++;
-    };
-}
-let counter = makeCounter();
-console.log(counter());
-console.log(counter());
-let counter2 = makeCounter();
-console.log(counter2());
-console.log(counter2());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function resolveAfter2Seconds(x) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(x);
-        }, 2000);
-    });
-}
-
-async function add1(x) {
-    const a = await resolveAfter2Seconds(20);
-    const b = await resolveAfter2Seconds(30);
-    return x + a + b;
-}
-
-add1(10).then(v => {
-    console.log(v);  // prints 60 after 4 seconds.
-});
-
-async function add2(x) {
-    const a = resolveAfter2Seconds(20);
-    const b = resolveAfter2Seconds(a);
-    return x + await a + await b;
-}
-
-add2(10).then(v => {
-    console.log(v);  // prints 60 after 2 seconds.
-});
+// //COPY OF OBJECT
+//
+//
+//
+// function resolveAfter2Seconds(x) {
+//     return new Promise(resolve => {
+//         setTimeout(() => {
+//             resolve(x);
+//         }, 2000);
+//     });
+// }
+//
+// async function add1(x) {
+//     const a = await resolveAfter2Seconds(20);
+//     const b = await resolveAfter2Seconds(30);
+//     return x + a + b;
+// }
+//
+// add1(10).then(v => {
+//     console.log(v);  // prints 60 after 4 seconds.
+// });
+//
+// async function add2(x) {
+//     const a = resolveAfter2Seconds(20);
+//     const b = resolveAfter2Seconds(a);
+//     return x + await a + await b;
+// }
+//
+// add2(10).then(v => {
+//     console.log(v);  // prints 60 after 2 seconds.
+// });
+//
+//
+// function randNum() {
+//     let r = Math.random()
+//     return new Promise((resolve, reject) => {
+//         setTimeout(function () {
+//             if (r > .1) {
+//                 console.log(r);
+//                 resolve(r)
+//             } else {
+//                 reject('Ooops')
+//             }
+//         }, 1000)
+//     })
+// };
+//
+// function multRand(number) {
+//     return new Promise(resolve => {
+//         setTimeout(function () {
+//             let res = number + 10;
+//             console.log(res);
+//             resolve(res)
+//         }, 1000)
+//     })
+// }
+//
+//
+// randNum().then(res => {
+//     console.log(res);
+//     return 40
+// }).then(res => {
+//     multRand(res)
+//     return 'HELLO WORLD'
+// }).then(value => {
+//     return new Promise(resolve => {
+//         setTimeout(() =>{
+//             console.log(value);
+//         },2000)
+//     })
+// }).catch(reason => {
+//         console.log(reason)
+// })
+//
+//
+// async function f() {
+//     let first = await randNum();
+//     let sec = await multRand(first);
+//     console.log(sec);
+//     setTimeout(()=> {
+//         console.log('Hello world')
+//     },3000)
+// }
+// f()
+//
+//

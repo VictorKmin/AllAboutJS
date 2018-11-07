@@ -7,6 +7,17 @@
 </head>
 <body>
 
+<input type="text" placeholder="ENTER TEXT" id="someTezt">
+<button id="someBtn">PRESS</button>
+
+<div style="width: 200px; height: 200px; background: black" id="divka"></div>
+
+<div id="target1" style="width: 400px; height: 400px; background: cornflowerblue">
+    <div id="target2" style="width: 200px; height: 200px; background: coral">
+        <div id="target3" style="width: 100px; height: 100px; background: khaki"></div>
+    </div>
+</div>
+
 
 <script>
     // // 1) CLOSURES
@@ -92,7 +103,6 @@
     // console.log(l());
     // console.log(l());
     // console.log(l());
-
 
     // // 2) CallBack
     // //
@@ -282,9 +292,60 @@
     // const target = iterationCopy(source);
     // console.log(target); // {a:1, b:2, c:3}
 
-
     //тернарний оператор
     //
+    // let ageIsGood = age => {
+    //     console.log(`Age ${age} is goooood`)
+    // }
+    //
+    // let ageIsBad = age=> {
+    //     console.log(`Age ${age} is very bad`)
+    // }
+    //
+    // let age = 9;
+    // (age >18) ? ageIsGood(age) : ageIsBad(age)
+
+
+    let someBtn = document.getElementById('someBtn');
+    let someTezt = document.getElementById("someTezt");
+    let divka = document.getElementById("divka");
+
+    divka.onmousemove = function (event) {
+        // console.log(event.clientY);
+        // console.log(event.clientX);
+        divka.style.background = `rgb(${event.clientY},${event.clientX},${event.clientX * event.clientY})`
+    };
+
+
+    let t1 = document.getElementById('target1');
+    let t2 = document.getElementById('target2');
+    let t3 = document.getElementById('target3');
+
+    // t1.onclick = ev => {
+    //     console.log('traget1')
+    // };
+    // t2.onclick = ev => {
+    //     console.log('traget2')
+    // };
+    // t3.onclick = ev => {
+    //     console.log('traget3')
+    // }
+
+    t1.addEventListener('click', ev => {
+        console.log('Target1')
+        //stopProp*** зупиняє погруження\всплиття
+        ev.stopPropagation()
+    }, false);
+
+    t2.addEventListener('click', ev => {
+        console.log('Target2')
+        ev.stopPropagation()
+    }, false);
+
+    t3.addEventListener('click', ev => {
+        console.log('Target3')
+        ev.stopPropagation()
+    }, false)
 
 
 
